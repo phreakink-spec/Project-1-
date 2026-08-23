@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Progetto €1</title>
 
 <style>
@@ -15,8 +14,7 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
-  background:
-    radial-gradient(circle at top, #303030 0%, #111 48%, #050505 100%);
+  background: radial-gradient(circle at top, #303030 0%, #111 48%, #050505 100%);
   color: white;
   display: flex;
   justify-content: center;
@@ -77,19 +75,26 @@ button {
   transition: .2s;
 }
 
+button:hover {
+  transform: scale(1.04);
+}
+
 .reveal {
   background: white;
   color: #111;
   font-size: 18px;
 }
 
-button:hover {
-  transform: scale(1.04);
+.rewardTitle {
+  display: none;
+  margin-top: 30px;
+  font-size: 30px;
+  font-weight: 800;
 }
 
 .surprise {
   display: none;
-  margin-top: 30px;
+  margin-top: 20px;
   padding: 28px 20px;
   border-radius: 22px;
   background: rgba(255,255,255,.09);
@@ -172,13 +177,16 @@ button:hover {
     <h1>CE L'HAI FATTA.</h1>
 
     <p class="intro">
-      Hai appena speso 1 € senza sapere esattamente
-      cosa sarebbe successo.
+      Hai fatto uno spreco inutile.
     </p>
 
     <button class="reveal" id="revealButton" onclick="reveal()">
       🎁 RIVELA LA SORPRESA
     </button>
+
+    <div class="rewardTitle" id="rewardTitle">
+      ECCO IL TUO PREMIO.
+    </div>
 
     <div class="surprise" id="surprise">
 
@@ -213,8 +221,7 @@ button:hover {
       <h2 id="shareTitle"></h2>
 
       <p>
-        Ho appena speso €1 su
-        <strong>Progetto €1</strong>.
+        Ho appena speso €1 su <strong>Progetto €1</strong>.
       </p>
 
       <p id="shareCode"></p>
@@ -222,8 +229,7 @@ button:hover {
     </div>
 
     <div class="code">
-      CODICE DELLO SPRECO ·
-      <span id="code"></span>
+      CODICE DELLO SPRECO · <span id="code"></span>
     </div>
 
   </div>
@@ -305,70 +311,65 @@ surprises[Math.floor(Math.random() * surprises.length)];
 
 function reveal() {
 
-document.getElementById("emoji").textContent =
-selected.emoji;
+  document.getElementById("rewardTitle").style.display = "block";
 
-document.getElementById("title").textContent =
-selected.title;
+  document.getElementById("emoji").textContent =
+    selected.emoji;
 
-document.getElementById("text").textContent =
-selected.text;
+  document.getElementById("title").textContent =
+    selected.title;
 
-document.getElementById("surprise").style.display =
-"block";
+  document.getElementById("text").textContent =
+    selected.text;
 
-document.getElementById("actions").style.display =
-"flex";
+  document.getElementById("surprise").style.display =
+    "block";
 
-document.getElementById("revealButton").style.display =
-"none";
+  document.getElementById("actions").style.display =
+    "flex";
+
+  document.getElementById("revealButton").style.display =
+    "none";
 }
 
 function regret() {
-
-alert("Pentimento registrato. Il tuo euro non verrà restituito.");
+  alert("Pentimento registrato. Il tuo euro non verrà restituito.");
 }
 
 function share() {
 
-document.getElementById("shareEmoji").textContent =
-selected.emoji;
+  document.getElementById("shareEmoji").textContent =
+    selected.emoji;
 
-document.getElementById("shareTitle").textContent =
-selected.title;
+  document.getElementById("shareTitle").textContent =
+    selected.title;
 
-document.getElementById("shareCode").textContent =
-"Codice: " + document.getElementById("code").textContent;
+  document.getElementById("shareCode").textContent =
+    "Codice: " + document.getElementById("code").textContent;
 
-document.getElementById("shareCard").style.display =
-"block";
+  document.getElementById("shareCard").style.display =
+    "block";
 }
 
 function another() {
-
-window.location.href =
-"index.html";
+  window.location.href = "index.html";
 }
 
 function randomCode() {
 
-const chars =
-"ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
-let result = "";
+  let result = "";
 
-for(let i=0;i<8;i++) {
+  for(let i = 0; i < 8; i++) {
+    result += chars[Math.floor(Math.random() * chars.length)];
+  }
 
-result +=
-chars[Math.floor(Math.random()*chars.length)];
-
-}
-
-return result;
+  return result;
 }
 
 document.getElementById("code").textContent =
-randomCode();
+  randomCode();
 
 </script>
 
