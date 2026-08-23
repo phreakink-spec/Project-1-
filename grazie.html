@@ -93,6 +93,7 @@ button:hover {
   border-radius: 22px;
   background: rgba(255,255,255,.09);
   border: 1px solid rgba(255,255,255,.1);
+  animation: appear .4s ease;
 }
 
 .surpriseEmoji {
@@ -290,74 +291,784 @@ button:hover {
 
 const surprises = [
 
+/* 1 */
 {
 emoji:"🏆",
 title:"CERTIFICATO UFFICIALE DI SPRECO",
 text:"Con la presente si certifica che hai speso 1 € in qualcosa di completamente inutile. Puoi esserne orgoglioso."
 },
 
+/* 2 */
 {
 emoji:"🧠",
 title:"PERLA DI SAGGEZZA",
 text:"Se perdi qualcosa sotto il divano, prima o poi dovrai spostare il divano."
 },
 
+/* 3 - GINO */
 {
 emoji:"🪨",
 title:"HAI ADOTTATO UN SASSO",
 text:"Il tuo sasso virtuale si chiama Gino. Non parla molto, ma apprezza il tuo contributo."
 },
 
+/* 4 */
 {
 emoji:"👑",
 title:"NUOVO TITOLO NOBILIARE",
 text:"Da questo momento puoi considerarti Sua Altezza, Custode Supremo dell'Euro Sprecato."
 },
 
+/* 5 */
 {
 emoji:"🧠",
 title:"TEST PSICOLOGICO",
 text:"Hai pagato 1 € senza sapere cosa avresti ricevuto. Questo dimostra che sei una persona pericolosamente curiosa. Il test è scientificamente inutile."
 },
 
+/* 6 */
 {
 emoji:"🔮",
 title:"PREDIZIONE DEL FUTURO",
 text:"Presto guarderai il tuo conto bancario e penserai: «Ah sì... quello è stato quell'euro.»"
 },
 
+/* 7 */
 {
 emoji:"🎖️",
 title:"MEDAGLIA AL CORAGGIO",
 text:"Per aver avuto il coraggio di cliccare «Paga 1 €» senza sapere assolutamente cosa sarebbe successo."
 },
 
+/* 8 */
 {
 emoji:"🕵️",
 title:"RAPPORTO RISERVATO",
 text:"Dopo un'attenta analisi, possiamo confermare che hai effettivamente speso 1 €. Le autorità sono state informate."
 },
 
+/* 9 */
 {
 emoji:"📊",
 title:"ANALISI SCIENTIFICA",
 text:"Il tuo euro ha aumentato l'inutilità globale dello 0,0000003%. Un risultato scientificamente impressionante."
 },
 
+/* 10 */
 {
 emoji:"🎲",
 title:"SORPRESA CASUALE",
 text:"Hai trovato la sorpresa più rara: non c'è niente da vedere qui. Ma ormai hai pagato."
+},
+
+/* 11 */
+{
+emoji:"🥇",
+title:"PRIMO POSTO",
+text:"Congratulazioni. Sei arrivato primo in una gara a cui non partecipava nessun altro."
+},
+
+/* 12 */
+{
+emoji:"📜",
+title:"DOCUMENTO IMPORTANTISSIMO",
+text:"Questo documento certifica ufficialmente che questo documento non serve assolutamente a niente."
+},
+
+/* 13 */
+{
+emoji:"🤔",
+title:"DOMANDA ESISTENZIALE",
+text:"Se spendi 1 € per scoprire cosa hai comprato, hai davvero comprato qualcosa?"
+},
+
+/* 14 */
+{
+emoji:"🐌",
+title:"PREMIO LUMACA",
+text:"Hai vinto una lumaca immaginaria. È molto lenta, quindi probabilmente non arriverà mai."
+},
+
+/* 15 */
+{
+emoji:"💎",
+title:"DIAMANTE VIRTUALE",
+text:"Possiedi ufficialmente un diamante. Purtroppo esiste solo nella tua immaginazione."
+},
+
+/* 16 */
+{
+emoji:"📞",
+title:"CHIAMATA PERSA",
+text:"Qualcuno ha provato a chiamarti per dirti che potevi risparmiare questo euro. Hai perso la chiamata."
+},
+
+/* 17 */
+{
+emoji:"🧙",
+title:"MAESTRO DELLO SPRECO",
+text:"Hai raggiunto un livello di spreco che pochi esseri umani hanno avuto il coraggio di raggiungere."
+},
+
+/* 18 */
+{
+emoji:"🚨",
+title:"ALLARME",
+text:"È stato rilevato un movimento sospetto sul tuo conto bancario. Sì, era proprio quell'euro."
+},
+
+/* 19 */
+{
+emoji:"🎩",
+title:"MAGIA",
+text:"Il tuo euro è sparito magicamente. Stranamente, è esattamente quello che doveva succedere."
+},
+
+/* 20 */
+{
+emoji:"🍕",
+title:"PIZZA IMMAGINARIA",
+text:"Hai appena comprato lo 0,0001% di una pizza immaginaria. La mozzarella è ottima."
+},
+
+/* 21 */
+{
+emoji:"🧃",
+title:"BEVANDA INVISIBILE",
+text:"Hai vinto una bevanda invisibile. Non rovesciarla."
+},
+
+/* 22 */
+{
+emoji:"🦆",
+title:"ANATRA UFFICIALE",
+text:"Da questo momento un'anatra immaginaria è responsabile delle tue decisioni finanziarie."
+},
+
+/* 23 */
+{
+emoji:"📡",
+title:"SEGNALE RICEVUTO",
+text:"Il tuo euro è stato ricevuto. Non abbiamo idea di cosa farne, ma grazie."
+},
+
+/* 24 */
+{
+emoji:"🛋️",
+title:"DIVANO VIRTUALE",
+text:"Hai acquistato un posto sul divano. Purtroppo qualcun altro ci si è già seduto."
+},
+
+/* 25 */
+{
+emoji:"🎓",
+title:"LAUREA",
+text:"Hai conseguito una laurea in Economia dello Spreco. Complimenti, dottore."
+},
+
+/* 26 */
+{
+emoji:"🐟",
+title:"PESCE INVISIBILE",
+text:"Hai adottato un pesce invisibile. Non devi nutrirlo perché non possiamo vederlo."
+},
+
+/* 27 */
+{
+emoji:"🌚",
+title:"LATO OSCURO",
+text:"Hai speso un euro. Nessuno sa perché. Nemmeno tu."
+},
+
+/* 28 */
+{
+emoji:"🧯",
+title:"ESTINTORE",
+text:"Hai vinto un estintore virtuale. Potrebbe essere utile se il tuo telefono prende fuoco."
+},
+
+/* 29 */
+{
+emoji:"🧦",
+title:"CALZINO SPERDUTO",
+text:"Abbiamo ritrovato un calzino. Non sappiamo se sia tuo. Comunque ora è tuo."
+},
+
+/* 30 */
+{
+emoji:"🎯",
+title:"CENTRO PERFETTO",
+text:"Hai centrato perfettamente l'obiettivo. Peccato che l'obiettivo fosse spendere un euro inutilmente."
+},
+
+/* 31 */
+{
+emoji:"🪪",
+title:"IDENTITÀ SEGRETA",
+text:"La tua nuova identità è: Persona Che Ha Speso Un Euro Per Vedere Una Sorpresa."
+},
+
+/* 32 */
+{
+emoji:"🌈",
+title:"ARCOBALENO",
+text:"Hai vinto un arcobaleno. Non puoi portarlo a casa perché pesa troppo."
+},
+
+/* 33 */
+{
+emoji:"🧦",
+title:"PREMIO CALZINO",
+text:"Congratulazioni: possiedi un calzino virtuale. L'altro è sparito."
+},
+
+/* 34 */
+{
+emoji:"🔬",
+title:"ESPERIMENTO",
+text:"L'esperimento è riuscito. Hai davvero pagato 1 € per vedere cosa sarebbe successo."
+},
+
+/* 35 */
+{
+emoji:"🐢",
+title:"TARTARUGA",
+text:"Hai ottenuto una tartaruga virtuale. Il suo unico talento è arrivare tardi."
+},
+
+/* 36 */
+{
+emoji:"💡",
+title:"IDEA GENIALE",
+text:"Abbiamo avuto un'idea geniale: non spendere altri euro. Purtroppo è arrivata troppo tardi."
+},
+
+/* 37 */
+{
+emoji:"🧩",
+title:"PEZZO MANCANTE",
+text:"Hai trovato il pezzo mancante del puzzle. Non abbiamo il puzzle, ma almeno hai il pezzo."
+},
+
+/* 38 */
+{
+emoji:"🧪",
+title:"FORMULA SEGRETA",
+text:"La formula segreta per risparmiare è stata scoperta. Non spendere soldi inutilmente. Troppo semplice."
+},
+
+/* 39 */
+{
+emoji:"🗿",
+title:"STATUA",
+text:"Una statua immaginaria è stata eretta in tuo onore. Nessuno sa dove si trovi."
+},
+
+/* 40 */
+{
+emoji:"📦",
+title:"PACCO VUOTO",
+text:"Il tuo pacco è arrivato. Contiene aria. L'aria era gratuita."
+},
+
+/* 41 */
+{
+emoji:"🚀",
+title:"MISSIONE SPAZIALE",
+text:"Il tuo euro è stato lanciato nello spazio. Non aspettarti che torni."
+},
+
+/* 42 */
+{
+emoji:"🦄",
+title:"UNICORNO",
+text:"Hai ottenuto un unicorno virtuale. Mangia arcobaleni e giudica le tue scelte."
+},
+
+/* 43 */
+{
+emoji:"🏖️",
+title:"VACANZA",
+text:"Hai prenotato una vacanza su un'isola immaginaria. Il volo è sempre in ritardo."
+},
+
+/* 44 */
+{
+emoji:"🧊",
+title:"GHIACCIO",
+text:"Hai ricevuto un cubetto di ghiaccio virtuale. Si è già sciolto."
+},
+
+/* 45 */
+{
+emoji:"🎬",
+title:"FINE DEL FILM",
+text:"Grazie per aver guardato. Non c'era nessun film."
+},
+
+/* 46 */
+{
+emoji:"🛸",
+title:"ALIENI",
+text:"Gli alieni hanno analizzato il tuo pagamento. Anche loro non capiscono perché l'hai fatto."
+},
+
+/* 47 */
+{
+emoji:"📚",
+title:"ENCICLOPEDIA",
+text:"Hai imparato una cosa fondamentale: puoi spendere un euro anche per scoprire che non serviva."
+},
+
+/* 48 */
+{
+emoji:"🧹",
+title:"SPAZZATURA",
+text:"Hai appena prodotto una minuscola quantità di spazzatura digitale. Complimenti."
+},
+
+/* 49 */
+{
+emoji:"🎈",
+title:"PALLONCINO",
+text:"Hai vinto un palloncino. È volato via prima che potessi prenderlo."
+},
+
+/* 50 */
+{
+emoji:"🔑",
+title:"CHIAVE",
+text:"Hai trovato una chiave. Non apre niente. Ma è una bella chiave."
+},
+
+/* 51 */
+{
+emoji:"🐔",
+title:"GALLINA",
+text:"Una gallina virtuale ha approvato la tua decisione. Non chiedere perché."
+},
+
+/* 52 */
+{
+emoji:"🌵",
+title:"CACTUS",
+text:"Hai adottato un cactus virtuale. Non serve annaffiarlo e non giudica le tue scelte."
+},
+
+/* 53 */
+{
+emoji:"🪐",
+title:"PIANETA",
+text:"Hai acquistato un pianeta. Purtroppo è già stato occupato da qualcuno."
+},
+
+/* 54 */
+{
+emoji:"🧛",
+title:"VAMPIRO",
+text:"Un vampiro virtuale ha promesso di proteggere il tuo euro. Non fidarti."
+},
+
+/* 55 */
+{
+emoji:"🧸",
+title:"ORSACCHIOTTO",
+text:"Hai ricevuto un orsacchiotto virtuale. Ti giudica in silenzio."
+},
+
+/* 56 */
+{
+emoji:"🧭",
+title:"BUSSOLA",
+text:"Hai trovato una bussola. Indica sempre la direzione dello spreco."
+},
+
+/* 57 */
+{
+emoji:"🏰",
+title:"CASTELLO",
+text:"Possiedi un castello virtuale. L'affitto è sorprendentemente alto."
+},
+
+/* 58 */
+{
+emoji:"🦖",
+title:"DINOSAURO",
+text:"Un dinosauro virtuale è apparso nel tuo account. Non sa perché."
+},
+
+/* 59 */
+{
+emoji:"🧻",
+title:"PREMIO CARTA IGIENICA",
+text:"Hai vinto un rotolo virtuale. Per fortuna non serve veramente."
+},
+
+/* 60 */
+{
+emoji:"☕",
+title:"CAFFÈ",
+text:"Questo messaggio vale esattamente quanto un caffè immaginario: niente, ma fa piacere."
+},
+
+/* 61 */
+{
+emoji:"🎸",
+title:"ROCKSTAR",
+text:"Per 24 ore sei ufficialmente una rockstar. Cerca di non montarti la testa."
+},
+
+/* 62 */
+{
+emoji:"🕶️",
+title:"MODALITÀ SEGRETA",
+text:"Hai sbloccato la modalità segreta. Non cambia assolutamente niente."
+},
+
+/* 63 */
+{
+emoji:"🌪️",
+title:"URAGANO",
+text:"Un piccolo uragano ha spazzato via il tuo euro. Era già partito comunque."
+},
+
+/* 64 */
+{
+emoji:"🐙",
+title:"POLPO",
+text:"Un polpo virtuale ti ha assegnato otto punti. Nessuno sa in quale classifica."
+},
+
+/* 65 */
+{
+emoji:"🦩",
+title:"FENICOTTERO",
+text:"Un fenicottero ha osservato il tuo acquisto e ha deciso di non commentare."
+},
+
+/* 66 */
+{
+emoji:"🛎️",
+title:"SERVIZIO IN CAMERA",
+text:"Il servizio in camera ha consegnato una cosa che non avevi ordinato: questa pagina."
+},
+
+/* 67 */
+{
+emoji:"🎮",
+title:"MISSIONE COMPLETATA",
+text:"Missione completata: spendere un euro. Ricompensa: una sorpresa inutile."
+},
+
+/* 68 */
+{
+emoji:"🧙‍♂️",
+title:"PROFEZIA",
+text:"Un antico mago aveva previsto questo momento. Anche lui non aveva niente di meglio da fare."
+},
+
+/* 69 */
+{
+emoji:"🍀",
+title:"FORTUNA",
+text:"La fortuna è dalla tua parte. Peccato che tu l'abbia usata per spendere un euro."
+},
+
+/* 70 */
+{
+emoji:"🚲",
+title:"BICICLETTA",
+text:"Hai vinto una bicicletta virtuale. È bellissima. Non puoi pedalarla."
+},
+
+/* 71 */
+{
+emoji:"🦈",
+title:"SQUALO",
+text:"Uno squalo virtuale ha comprato un biglietto per vedere questa pagina. Ora siete pari."
+},
+
+/* 72 */
+{
+emoji:"🧸",
+title:"AMICO IMMAGINARIO",
+text:"Hai appena ricevuto un nuovo amico immaginario. Non risponde ai messaggi."
+},
+
+/* 73 */
+{
+emoji:"🪄",
+title:"BACCHETTA MAGICA",
+text:"Hai trovato una bacchetta magica. Purtroppo è scarica."
+},
+
+/* 74 */
+{
+emoji:"🎁",
+title:"REGALO",
+text:"Questo è un regalo. Te lo sei praticamente comprato da solo."
+},
+
+/* 75 */
+{
+emoji:"🧮",
+title:"CALCOLO PERFETTO",
+text:"1 € meno 1 € fa 0 €. La matematica conferma il tuo spreco."
+},
+
+/* 76 */
+{
+emoji:"🐸",
+title:"RANA",
+text:"Una rana ha approvato il tuo acquisto con un sonoro «Cra». È tutto ciò che sappiamo."
+},
+
+/* 77 */
+{
+emoji:"🌙",
+title:"LUNA",
+text:"Hai comprato un piccolo pezzo di luna. È troppo lontano per essere consegnato."
+},
+
+/* 78 */
+{
+emoji:"🪙",
+title:"MONETA",
+text:"Hai speso una moneta per vedere una moneta. Questa è quasi arte."
+},
+
+/* 79 */
+{
+emoji:"🎤",
+title:"ANNUNCIO PUBBLICO",
+text:"Attenzione: una persona ha appena speso un euro per una sorpresa. Quella persona sei tu."
+},
+
+/* 80 */
+{
+emoji:"📸",
+title:"FOTO UFFICIALE",
+text:"Questo è il momento perfetto per fare uno screenshot e fingere che tu abbia vinto qualcosa."
+},
+
+/* 81 */
+{
+emoji:"🫠",
+title:"MOMENTO DI CONSAPEVOLEZZA",
+text:"In questo preciso momento hai realizzato che potevi tenerti quell'euro."
+},
+
+/* 82 */
+{
+emoji:"🛸",
+title:"TELETRASPORTO",
+text:"Il tuo euro è stato teletrasportato. Destinazione sconosciuta."
+},
+
+/* 83 */
+{
+emoji:"🧁",
+title:"DOLCETTO",
+text:"Hai ricevuto un cupcake virtuale. Non contiene calorie, ma nemmeno cioccolato."
+},
+
+/* 84 */
+{
+emoji:"🐈",
+title:"GATTO",
+text:"Un gatto virtuale ha visto il tuo pagamento. Ti ha guardato. Poi ha ignorato tutto."
+},
+
+/* 85 */
+{
+emoji:"🦥",
+title:"BRADIPO",
+text:"Hai sbloccato un bradipo. Farà qualcosa prima o poi. Probabilmente."
+},
+
+/* 86 */
+{
+emoji:"🎰",
+title:"JACKPOT",
+text:"JACKPOT! Hai vinto... la soddisfazione di aver speso un euro."
+},
+
+/* 87 */
+{
+emoji:"🧿",
+title:"AMULETO",
+text:"Questo amuleto proteggerà il tuo conto bancario. Peccato che l'euro sia già andato."
+},
+
+/* 88 */
+{
+emoji:"🧃",
+title:"SUCCO",
+text:"Hai vinto un succo di frutta virtuale. Gusto: spreco tropicale."
+},
+
+/* 89 */
+{
+emoji:"🧑‍🚀",
+title:"ASTRONAUTA",
+text:"Sei stato promosso astronauta. La prima missione è capire dove è finito il tuo euro."
+},
+
+/* 90 */
+{
+emoji:"🪑",
+title:"SEDIA",
+text:"Hai ottenuto una sedia virtuale. È molto comoda, secondo nessuno."
+},
+
+/* 91 */
+{
+emoji:"🔔",
+title:"CAMPANELLO",
+text:"Ding dong. Hai appena speso un euro."
+},
+
+/* 92 */
+{
+emoji:"🌳",
+title:"ALBERO",
+text:"Hai piantato un albero virtuale. Produce ossigeno immaginario."
+},
+
+/* 93 */
+{
+emoji:"🦆",
+title:"COMITATO DELLE ANATRE",
+text:"Il comitato delle anatre si è riunito e ha approvato il tuo spreco con voto unanime."
+},
+
+/* 94 */
+{
+emoji:"📬",
+title:"LETTERA",
+text:"Hai ricevuto una lettera. Dice semplicemente: «Grazie per l'euro.»"
+},
+
+/* 95 */
+{
+emoji:"🎵",
+title:"CANZONE",
+text:"Questa è la colonna sonora del tuo euro che se ne va. La senti? No? Perfetto."
+},
+
+/* 96 */
+{
+emoji:"🧙‍♀️",
+title:"STREGA",
+text:"Una strega ha controllato il tuo futuro. Dice che spenderai ancora un euro."
+},
+
+/* 97 */
+{
+emoji:"🥳",
+title:"FESTA",
+text:"Abbiamo organizzato una festa in tuo onore. Gli invitati sono tre pixel e un sasso."
+},
+
+/* 98 */
+{
+emoji:"🕳️",
+title:"BUCO",
+text:"Hai trovato un buco. Non porta da nessuna parte. Come questa esperienza."
+},
+
+/* 99 */
+{
+emoji:"📈",
+title:"INVESTIMENTO",
+text:"Il tuo investimento ha prodotto un rendimento straordinario: una sorpresa inutile."
+},
+
+/* 100 */
+{
+emoji:"🪨",
+title:"GINO È TORNATO",
+text:"Gino il sasso voleva salutarti. Dice che sei stato un ottimo proprietario per circa tre secondi."
 }
 
 ];
 
-let selected =
-surprises[Math.floor(Math.random() * surprises.length)];
+
+/* ------------------------------
+   SISTEMA ANTI-RIPETIZIONE
+-------------------------------- */
+
+const STORAGE_KEY = "project1_seen_surprises";
+
+function getSeen() {
+
+  try {
+    return JSON.parse(
+      localStorage.getItem(STORAGE_KEY)
+    ) || [];
+
+  } catch(e) {
+
+    return [];
+
+  }
+
+}
+
+function saveSeen(seen) {
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(seen)
+  );
+
+}
+
+function chooseSurprise() {
+
+  let seen = getSeen();
+
+  /*
+    Se sono state viste tutte,
+    ricominciamo un nuovo ciclo.
+  */
+
+  if (seen.length >= surprises.length) {
+
+    seen = [];
+
+    saveSeen(seen);
+
+  }
+
+  const available = surprises
+    .map((item, index) => index)
+    .filter(index => !seen.includes(index));
+
+  const randomIndex =
+    available[
+      Math.floor(Math.random() * available.length)
+    ];
+
+  seen.push(randomIndex);
+
+  saveSeen(seen);
+
+  return surprises[randomIndex];
+
+}
+
+let selected = chooseSurprise();
+
+
+/* ------------------------------
+   REVEAL
+-------------------------------- */
 
 function reveal() {
 
-  document.getElementById("rewardTitle").style.display = "block";
+  document.getElementById("rewardTitle").style.display =
+    "block";
 
   document.getElementById("emoji").textContent =
     selected.emoji;
@@ -376,7 +1087,13 @@ function reveal() {
 
   document.getElementById("revealButton").style.display =
     "none";
+
 }
+
+
+/* ------------------------------
+   PENTIMENTO
+-------------------------------- */
 
 function regret() {
 
@@ -384,6 +1101,11 @@ function regret() {
     "block";
 
 }
+
+
+/* ------------------------------
+   CONDIVIDI
+-------------------------------- */
 
 function share() {
 
@@ -399,7 +1121,13 @@ function share() {
 
   document.getElementById("shareCard").style.display =
     "block";
+
 }
+
+
+/* ------------------------------
+   UN ALTRO EURO
+-------------------------------- */
 
 function another() {
 
@@ -407,6 +1135,11 @@ function another() {
     "index.html";
 
 }
+
+
+/* ------------------------------
+   CODICE CASUALE
+-------------------------------- */
 
 function randomCode() {
 
@@ -418,11 +1151,16 @@ function randomCode() {
   for(let i = 0; i < 8; i++) {
 
     result +=
-      chars[Math.floor(Math.random() * chars.length)];
+      chars[
+        Math.floor(
+          Math.random() * chars.length
+        )
+      ];
 
   }
 
   return result;
+
 }
 
 document.getElementById("code").textContent =
