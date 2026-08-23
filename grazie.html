@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grazie - Progetto €1</title>
+  <title>Progetto €1</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
@@ -15,81 +19,186 @@
     }
 
     .container {
-      max-width: 650px;
+      max-width: 680px;
       margin: auto;
-      padding: 80px 25px;
+      padding: 60px 20px;
     }
 
     .card {
       background: white;
-      padding: 45px 30px;
-      border-radius: 24px;
+      padding: 45px 28px;
+      border-radius: 25px;
       box-shadow: 0 10px 35px rgba(0,0,0,0.08);
     }
 
     .emoji {
-      font-size: 65px;
+      font-size: 60px;
     }
 
     h1 {
-      font-size: 38px;
-      margin: 20px 0;
+      font-size: 36px;
+      margin: 20px 0 10px;
     }
 
-    p {
-      font-size: 19px;
+    .intro {
+      color: #555;
+      font-size: 18px;
       line-height: 1.6;
-      color: #444;
     }
 
     .prize {
       margin-top: 30px;
-      padding: 25px;
+      padding: 30px 20px;
       border-radius: 18px;
-      background: #f0f0f0;
-      font-size: 22px;
-      font-weight: bold;
+      background: #f1f1f1;
     }
 
-    .small {
-      margin-top: 35px;
+    .prize h2 {
+      margin-top: 0;
+      font-size: 27px;
+    }
+
+    .prize p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .code {
+      margin-top: 30px;
       font-size: 13px;
       color: #888;
+    }
+
+    footer {
+      margin-top: 35px;
+      font-size: 12px;
+      color: #999;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <div class="card">
+  <div class="card">
 
-      <div class="emoji">🎉</div>
+    <div class="emoji">🎉</div>
 
-      <h1>CE L'HAI FATTA.</h1>
+    <h1>CE L'HAI FATTA.</h1>
 
-      <p>
-        Hai appena speso 1 €.
-      </p>
+    <p class="intro">
+      Hai appena speso 1 € per ottenere qualcosa
+      che probabilmente non ti serviva.
+    </p>
 
-      <p>
-        Non puoi più tornare indietro.
-      </p>
-
-      <div class="prize">
-        🏆 Complimenti.<br><br>
-        Hai ufficialmente finanziato qualcosa
-        che non serve assolutamente a niente.
-      </div>
-
-      <p class="small">
-        Grazie per aver partecipato al Progetto €1.
-      </p>
-
+    <div class="prize" id="prize">
+      <h2>🎁 La tua sorpresa</h2>
+      <p>Caricamento...</p>
     </div>
 
+    <div class="code">
+      Codice dello spreco:
+      <strong id="code"></strong>
+    </div>
+
+    <footer>
+      Progetto €1 — Esperienza digitale di intrattenimento.
+    </footer>
+
   </div>
+
+</div>
+
+<script>
+
+const surprises = [
+
+  {
+    emoji: "🏆",
+    title: "CERTIFICATO UFFICIALE DI SPRECO",
+    text: "Con la presente si certifica che hai speso 1 € in qualcosa di completamente inutile. Puoi esserne orgoglioso."
+  },
+
+  {
+    emoji: "🧠",
+    title: "PERLA DI SAGGEZZA",
+    text: "Se perdi qualcosa sotto il divano, prima o poi dovrai spostare il divano."
+  },
+
+  {
+    emoji: "🪨",
+    title: "HAI ADOTTATO UN SASSO",
+    text: "Il tuo sasso virtuale si chiama Gino. Non parla molto, ma apprezza il tuo contributo."
+  },
+
+  {
+    emoji: "👑",
+    title: "NUOVO TITOLO NOBILIARE",
+    text: "Da questo momento puoi considerarti Sua Altezza, Custode Supremo dell'Euro Sprecato."
+  },
+
+  {
+    emoji: "😂",
+    title: "BARZELLETTA",
+    text: "Perché il pomodoro non riesce mai a dormire? Perché ha sempre l'insalata nella testa."
+  },
+
+  {
+    emoji: "🔮",
+    title: "PREDIZIONE DEL FUTURO",
+    text: "Presto guarderai il tuo conto bancario e penserai: 'Ah sì... quello è stato quell'euro.'"
+  },
+
+  {
+    emoji: "🎖️",
+    title: "MEDAGLIA AL CORAGGIO",
+    text: "Per aver avuto il coraggio di cliccare 'Paga 1 €' senza sapere assolutamente cosa sarebbe successo."
+  },
+
+  {
+    emoji: "🕵️",
+    title: "RAPPORTO RISERVATO",
+    text: "Dopo un'attenta analisi, possiamo confermare che hai effettivamente speso 1 €. Le autorità sono state informate."
+  },
+
+  {
+    emoji: "📊",
+    title: "ANALISI SCIENTIFICA",
+    text: "Il tuo euro ha aumentato l'inutilità globale dello 0,0000003%. Un risultato scientificamente impressionante."
+  },
+
+  {
+    emoji: "🎲",
+    title: "SORPRESA CASUALE",
+    text: "Hai trovato la sorpresa più rara: non c'è niente da vedere qui. Ma ormai hai pagato."
+  }
+
+];
+
+const surprise =
+  surprises[Math.floor(Math.random() * surprises.length)];
+
+document.querySelector("#prize").innerHTML =
+  "<div style='font-size:45px'>" + surprise.emoji + "</div>" +
+  "<h2>" + surprise.title + "</h2>" +
+  "<p>" + surprise.text + "</p>";
+
+function randomCode() {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let result = "";
+
+  for (let i = 0; i < 8; i++) {
+    result += chars[Math.floor(Math.random() * chars.length)];
+  }
+
+  return result;
+}
+
+document.querySelector("#code").textContent = randomCode();
+
+</script>
 
 </body>
 </html>
