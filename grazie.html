@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Progetto €1</title>
 
   <style>
@@ -12,104 +13,187 @@
 
     body {
       margin: 0;
+      min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
-      background: #f5f5f5;
-      color: #111;
-      text-align: center;
+      background:
+        radial-gradient(circle at top, #292929 0%, #111 45%, #050505 100%);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 25px;
     }
 
     .container {
-      max-width: 680px;
-      margin: auto;
-      padding: 60px 20px;
+      width: 100%;
+      max-width: 620px;
+      text-align: center;
+    }
+
+    .brand {
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      color: #aaa;
+      margin-bottom: 25px;
     }
 
     .card {
-      background: white;
-      padding: 45px 28px;
-      border-radius: 25px;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(15px);
+      border-radius: 30px;
+      padding: 45px 30px;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.45);
     }
 
     .emoji {
-      font-size: 60px;
+      font-size: 75px;
+      margin-bottom: 15px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
     }
 
     h1 {
-      font-size: 36px;
-      margin: 20px 0 10px;
+      font-size: clamp(34px, 8vw, 55px);
+      margin: 0;
+      letter-spacing: -2px;
     }
 
     .intro {
-      color: #555;
+      color: #bbb;
       font-size: 18px;
       line-height: 1.6;
+      margin: 20px auto 30px;
+      max-width: 480px;
     }
 
-    .prize {
+    .reveal-button {
+      border: none;
+      background: white;
+      color: #111;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 16px 30px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .reveal-button:hover {
+      transform: scale(1.04);
+      box-shadow: 0 10px 30px rgba(255,255,255,0.15);
+    }
+
+    .surprise {
+      display: none;
       margin-top: 30px;
-      padding: 30px 20px;
-      border-radius: 18px;
-      background: #f1f1f1;
+      padding: 30px 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.1);
+      animation: appear 0.6s ease;
     }
 
-    .prize h2 {
-      margin-top: 0;
-      font-size: 27px;
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: scale(0.94) translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
     }
 
-    .prize p {
-      font-size: 18px;
+    .surprise-emoji {
+      font-size: 55px;
+      margin-bottom: 12px;
+    }
+
+    .surprise h2 {
+      font-size: 26px;
+      margin: 8px 0 15px;
+    }
+
+    .surprise p {
+      color: #ccc;
+      font-size: 17px;
       line-height: 1.6;
-      color: #333;
+      margin: 0;
     }
 
     .code {
       margin-top: 30px;
-      font-size: 13px;
-      color: #888;
+      color: #666;
+      font-size: 11px;
+      letter-spacing: 2px;
     }
 
-    footer {
-      margin-top: 35px;
-      font-size: 12px;
-      color: #999;
+    .footer {
+      margin-top: 25px;
+      color: #555;
+      font-size: 11px;
     }
   </style>
 </head>
 
 <body>
 
-<div class="container">
+  <div class="container">
 
-  <div class="card">
-
-    <div class="emoji">🎉</div>
-
-    <h1>CE L'HAI FATTA.</h1>
-
-    <p class="intro">
-      Hai appena speso 1 € per ottenere qualcosa
-      che probabilmente non ti serviva.
-    </p>
-
-    <div class="prize" id="prize">
-      <h2>🎁 La tua sorpresa</h2>
-      <p>Caricamento...</p>
+    <div class="brand">
+      PROGETTO €1
     </div>
 
-    <div class="code">
-      Codice dello spreco:
-      <strong id="code"></strong>
+    <div class="card">
+
+      <div class="emoji">
+        🎉
+      </div>
+
+      <h1>CE L'HAI FATTA.</h1>
+
+      <p class="intro">
+        Hai appena speso 1 € senza sapere esattamente
+        cosa sarebbe successo.
+      </p>
+
+      <button class="reveal-button" onclick="reveal()">
+        🎁 RIVELA LA SORPRESA
+      </button>
+
+      <div class="surprise" id="surprise">
+
+        <div class="surprise-emoji" id="surpriseEmoji"></div>
+
+        <h2 id="surpriseTitle"></h2>
+
+        <p id="surpriseText"></p>
+
+      </div>
+
+      <div class="code">
+        CODICE DELLO SPRECO · <span id="code"></span>
+      </div>
+
     </div>
 
-    <footer>
-      Progetto €1 — Esperienza digitale di intrattenimento.
-    </footer>
+    <div class="footer">
+      Un progetto completamente inutile.
+    </div>
 
   </div>
-
-</div>
 
 <script>
 
@@ -140,21 +224,21 @@ const surprises = [
   },
 
   {
-    emoji: "😂",
-    title: "BARZELLETTA",
-    text: "Perché il pomodoro non riesce mai a dormire? Perché ha sempre l'insalata nella testa."
+    emoji: "🧠",
+    title: "TEST PSICOLOGICO",
+    text: "Hai pagato 1 € senza sapere cosa avresti ricevuto. Questo dimostra che sei una persona pericolosamente curiosa. Il test è scientificamente inutile."
   },
 
   {
     emoji: "🔮",
     title: "PREDIZIONE DEL FUTURO",
-    text: "Presto guarderai il tuo conto bancario e penserai: 'Ah sì... quello è stato quell'euro.'"
+    text: "Presto guarderai il tuo conto bancario e penserai: «Ah sì... quello è stato quell'euro.»"
   },
 
   {
     emoji: "🎖️",
     title: "MEDAGLIA AL CORAGGIO",
-    text: "Per aver avuto il coraggio di cliccare 'Paga 1 €' senza sapere assolutamente cosa sarebbe successo."
+    text: "Per aver avuto il coraggio di cliccare «Paga 1 €» senza sapere assolutamente cosa sarebbe successo."
   },
 
   {
@@ -177,16 +261,32 @@ const surprises = [
 
 ];
 
-const surprise =
+let selectedSurprise =
   surprises[Math.floor(Math.random() * surprises.length)];
 
-document.querySelector("#prize").innerHTML =
-  "<div style='font-size:45px'>" + surprise.emoji + "</div>" +
-  "<h2>" + surprise.title + "</h2>" +
-  "<p>" + surprise.text + "</p>";
+function reveal() {
+
+  document.getElementById("surpriseEmoji").textContent =
+    selectedSurprise.emoji;
+
+  document.getElementById("surpriseTitle").textContent =
+    selectedSurprise.title;
+
+  document.getElementById("surpriseText").textContent =
+    selectedSurprise.text;
+
+  document.getElementById("surprise").style.display =
+    "block";
+
+  document.querySelector(".reveal-button").style.display =
+    "none";
+}
 
 function randomCode() {
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+  const chars =
+    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
   let result = "";
 
   for (let i = 0; i < 8; i++) {
@@ -196,7 +296,8 @@ function randomCode() {
   return result;
 }
 
-document.querySelector("#code").textContent = randomCode();
+document.getElementById("code").textContent =
+  randomCode();
 
 </script>
 
