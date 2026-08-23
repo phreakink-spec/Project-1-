@@ -1,303 +1,374 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Progetto €1</title>
+<title>Progetto €1</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top, #292929 0%, #111 45%, #050505 100%);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 25px;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at top, #303030 0%, #111 48%, #050505 100%);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
 
-    .container {
-      width: 100%;
-      max-width: 620px;
-      text-align: center;
-    }
+.container {
+  width: 100%;
+  max-width: 620px;
+  text-align: center;
+}
 
-    .brand {
-      font-size: 14px;
-      font-weight: bold;
-      letter-spacing: 4px;
-      color: #aaa;
-      margin-bottom: 25px;
-    }
+.logo {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 25px;
+  border: 2px solid rgba(255,255,255,.25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
 
-    .card {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(15px);
-      border-radius: 30px;
-      padding: 45px 30px;
-      box-shadow: 0 25px 80px rgba(0,0,0,0.45);
-    }
+.card {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(15px);
+  border-radius: 30px;
+  padding: 42px 25px;
+  box-shadow: 0 25px 80px rgba(0,0,0,.5);
+}
 
-    .emoji {
-      font-size: 75px;
-      margin-bottom: 15px;
-      animation: float 3s ease-in-out infinite;
-    }
+h1 {
+  font-size: clamp(35px, 8vw, 55px);
+  margin: 0;
+  letter-spacing: -2px;
+}
 
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
+.intro {
+  color: #aaa;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 18px auto 30px;
+  max-width: 470px;
+}
 
-      50% {
-        transform: translateY(-8px);
-      }
-    }
+button {
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 50px;
+  padding: 15px 25px;
+  font-size: 16px;
+  transition: .2s;
+}
 
-    h1 {
-      font-size: clamp(34px, 8vw, 55px);
-      margin: 0;
-      letter-spacing: -2px;
-    }
+.reveal {
+  background: white;
+  color: #111;
+  font-size: 18px;
+}
 
-    .intro {
-      color: #bbb;
-      font-size: 18px;
-      line-height: 1.6;
-      margin: 20px auto 30px;
-      max-width: 480px;
-    }
+button:hover {
+  transform: scale(1.04);
+}
 
-    .reveal-button {
-      border: none;
-      background: white;
-      color: #111;
-      font-size: 18px;
-      font-weight: bold;
-      padding: 16px 30px;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+.surprise {
+  display: none;
+  margin-top: 30px;
+  padding: 28px 20px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.09);
+  border: 1px solid rgba(255,255,255,.1);
+}
 
-    .reveal-button:hover {
-      transform: scale(1.04);
-      box-shadow: 0 10px 30px rgba(255,255,255,0.15);
-    }
+.surpriseEmoji {
+  font-size: 55px;
+}
 
-    .surprise {
-      display: none;
-      margin-top: 30px;
-      padding: 30px 22px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.09);
-      border: 1px solid rgba(255,255,255,0.1);
-      animation: appear 0.6s ease;
-    }
+.surprise h2 {
+  font-size: 26px;
+  margin: 10px 0;
+}
 
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: scale(0.94) translateY(10px);
-      }
+.surprise p {
+  color: #ccc;
+  font-size: 17px;
+  line-height: 1.6;
+}
 
-      to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
-    }
+.actions {
+  display: none;
+  margin-top: 20px;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-    .surprise-emoji {
-      font-size: 55px;
-      margin-bottom: 12px;
-    }
+.actions button {
+  background: rgba(255,255,255,.1);
+  color: white;
+  border: 1px solid rgba(255,255,255,.15);
+}
 
-    .surprise h2 {
-      font-size: 26px;
-      margin: 8px 0 15px;
-    }
+.shareCard {
+  display: none;
+  margin-top: 25px;
+  padding: 25px;
+  border-radius: 20px;
+  background: white;
+  color: #111;
+}
 
-    .surprise p {
-      color: #ccc;
-      font-size: 17px;
-      line-height: 1.6;
-      margin: 0;
-    }
+.shareCard .big {
+  font-size: 45px;
+}
 
-    .code {
-      margin-top: 30px;
-      color: #666;
-      font-size: 11px;
-      letter-spacing: 2px;
-    }
+.shareCard h2 {
+  margin: 10px 0;
+}
 
-    .footer {
-      margin-top: 25px;
-      color: #555;
-      font-size: 11px;
-    }
-  </style>
+.shareCard p {
+  color: #555;
+}
+
+.code {
+  margin-top: 30px;
+  color: #555;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.footer {
+  margin-top: 22px;
+  color: #555;
+  font-size: 11px;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <div class="brand">
-      PROGETTO €1
+  <div class="logo">€1</div>
+
+  <div class="card">
+
+    <h1>CE L'HAI FATTA.</h1>
+
+    <p class="intro">
+      Hai appena speso 1 € senza sapere esattamente
+      cosa sarebbe successo.
+    </p>
+
+    <button class="reveal" id="revealButton" onclick="reveal()">
+      🎁 RIVELA LA SORPRESA
+    </button>
+
+    <div class="surprise" id="surprise">
+
+      <div class="surpriseEmoji" id="emoji"></div>
+
+      <h2 id="title"></h2>
+
+      <p id="text"></p>
+
     </div>
 
-    <div class="card">
+    <div class="actions" id="actions">
 
-      <div class="emoji">
-        🎉
-      </div>
-
-      <h1>CE L'HAI FATTA.</h1>
-
-      <p class="intro">
-        Hai appena speso 1 € senza sapere esattamente
-        cosa sarebbe successo.
-      </p>
-
-      <button class="reveal-button" onclick="reveal()">
-        🎁 RIVELA LA SORPRESA
+      <button onclick="regret()">
+        😂 MI SONO PENTITO
       </button>
 
-      <div class="surprise" id="surprise">
+      <button onclick="share()">
+        📤 CONDIVIDI
+      </button>
 
-        <div class="surprise-emoji" id="surpriseEmoji"></div>
-
-        <h2 id="surpriseTitle"></h2>
-
-        <p id="surpriseText"></p>
-
-      </div>
-
-      <div class="code">
-        CODICE DELLO SPRECO · <span id="code"></span>
-      </div>
+      <button onclick="another()">
+        🔄 UN ALTRO EURO
+      </button>
 
     </div>
 
-    <div class="footer">
-      Un progetto completamente inutile.
+    <div class="shareCard" id="shareCard">
+
+      <div class="big" id="shareEmoji"></div>
+
+      <h2 id="shareTitle"></h2>
+
+      <p>
+        Ho appena speso €1 su
+        <strong>Progetto €1</strong>.
+      </p>
+
+      <p id="shareCode"></p>
+
+    </div>
+
+    <div class="code">
+      CODICE DELLO SPRECO ·
+      <span id="code"></span>
     </div>
 
   </div>
+
+  <div class="footer">
+    Un progetto completamente inutile.
+  </div>
+
+</div>
 
 <script>
 
 const surprises = [
 
-  {
-    emoji: "🏆",
-    title: "CERTIFICATO UFFICIALE DI SPRECO",
-    text: "Con la presente si certifica che hai speso 1 € in qualcosa di completamente inutile. Puoi esserne orgoglioso."
-  },
+{
+emoji:"🏆",
+title:"CERTIFICATO UFFICIALE DI SPRECO",
+text:"Con la presente si certifica che hai speso 1 € in qualcosa di completamente inutile. Puoi esserne orgoglioso."
+},
 
-  {
-    emoji: "🧠",
-    title: "PERLA DI SAGGEZZA",
-    text: "Se perdi qualcosa sotto il divano, prima o poi dovrai spostare il divano."
-  },
+{
+emoji:"🧠",
+title:"PERLA DI SAGGEZZA",
+text:"Se perdi qualcosa sotto il divano, prima o poi dovrai spostare il divano."
+},
 
-  {
-    emoji: "🪨",
-    title: "HAI ADOTTATO UN SASSO",
-    text: "Il tuo sasso virtuale si chiama Gino. Non parla molto, ma apprezza il tuo contributo."
-  },
+{
+emoji:"🪨",
+title:"HAI ADOTTATO UN SASSO",
+text:"Il tuo sasso virtuale si chiama Gino. Non parla molto, ma apprezza il tuo contributo."
+},
 
-  {
-    emoji: "👑",
-    title: "NUOVO TITOLO NOBILIARE",
-    text: "Da questo momento puoi considerarti Sua Altezza, Custode Supremo dell'Euro Sprecato."
-  },
+{
+emoji:"👑",
+title:"NUOVO TITOLO NOBILIARE",
+text:"Da questo momento puoi considerarti Sua Altezza, Custode Supremo dell'Euro Sprecato."
+},
 
-  {
-    emoji: "🧠",
-    title: "TEST PSICOLOGICO",
-    text: "Hai pagato 1 € senza sapere cosa avresti ricevuto. Questo dimostra che sei una persona pericolosamente curiosa. Il test è scientificamente inutile."
-  },
+{
+emoji:"🧠",
+title:"TEST PSICOLOGICO",
+text:"Hai pagato 1 € senza sapere cosa avresti ricevuto. Questo dimostra che sei una persona pericolosamente curiosa. Il test è scientificamente inutile."
+},
 
-  {
-    emoji: "🔮",
-    title: "PREDIZIONE DEL FUTURO",
-    text: "Presto guarderai il tuo conto bancario e penserai: «Ah sì... quello è stato quell'euro.»"
-  },
+{
+emoji:"🔮",
+title:"PREDIZIONE DEL FUTURO",
+text:"Presto guarderai il tuo conto bancario e penserai: «Ah sì... quello è stato quell'euro.»"
+},
 
-  {
-    emoji: "🎖️",
-    title: "MEDAGLIA AL CORAGGIO",
-    text: "Per aver avuto il coraggio di cliccare «Paga 1 €» senza sapere assolutamente cosa sarebbe successo."
-  },
+{
+emoji:"🎖️",
+title:"MEDAGLIA AL CORAGGIO",
+text:"Per aver avuto il coraggio di cliccare «Paga 1 €» senza sapere assolutamente cosa sarebbe successo."
+},
 
-  {
-    emoji: "🕵️",
-    title: "RAPPORTO RISERVATO",
-    text: "Dopo un'attenta analisi, possiamo confermare che hai effettivamente speso 1 €. Le autorità sono state informate."
-  },
+{
+emoji:"🕵️",
+title:"RAPPORTO RISERVATO",
+text:"Dopo un'attenta analisi, possiamo confermare che hai effettivamente speso 1 €. Le autorità sono state informate."
+},
 
-  {
-    emoji: "📊",
-    title: "ANALISI SCIENTIFICA",
-    text: "Il tuo euro ha aumentato l'inutilità globale dello 0,0000003%. Un risultato scientificamente impressionante."
-  },
+{
+emoji:"📊",
+title:"ANALISI SCIENTIFICA",
+text:"Il tuo euro ha aumentato l'inutilità globale dello 0,0000003%. Un risultato scientificamente impressionante."
+},
 
-  {
-    emoji: "🎲",
-    title: "SORPRESA CASUALE",
-    text: "Hai trovato la sorpresa più rara: non c'è niente da vedere qui. Ma ormai hai pagato."
-  }
+{
+emoji:"🎲",
+title:"SORPRESA CASUALE",
+text:"Hai trovato la sorpresa più rara: non c'è niente da vedere qui. Ma ormai hai pagato."
+}
 
 ];
 
-let selectedSurprise =
-  surprises[Math.floor(Math.random() * surprises.length)];
+let selected =
+surprises[Math.floor(Math.random() * surprises.length)];
 
 function reveal() {
 
-  document.getElementById("surpriseEmoji").textContent =
-    selectedSurprise.emoji;
+document.getElementById("emoji").textContent =
+selected.emoji;
 
-  document.getElementById("surpriseTitle").textContent =
-    selectedSurprise.title;
+document.getElementById("title").textContent =
+selected.title;
 
-  document.getElementById("surpriseText").textContent =
-    selectedSurprise.text;
+document.getElementById("text").textContent =
+selected.text;
 
-  document.getElementById("surprise").style.display =
-    "block";
+document.getElementById("surprise").style.display =
+"block";
 
-  document.querySelector(".reveal-button").style.display =
-    "none";
+document.getElementById("actions").style.display =
+"flex";
+
+document.getElementById("revealButton").style.display =
+"none";
+}
+
+function regret() {
+
+alert("Pentimento registrato. Il tuo euro non verrà restituito.");
+}
+
+function share() {
+
+document.getElementById("shareEmoji").textContent =
+selected.emoji;
+
+document.getElementById("shareTitle").textContent =
+selected.title;
+
+document.getElementById("shareCode").textContent =
+"Codice: " + document.getElementById("code").textContent;
+
+document.getElementById("shareCard").style.display =
+"block";
+}
+
+function another() {
+
+window.location.href =
+"index.html";
 }
 
 function randomCode() {
 
-  const chars =
-    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+const chars =
+"ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
-  let result = "";
+let result = "";
 
-  for (let i = 0; i < 8; i++) {
-    result += chars[Math.floor(Math.random() * chars.length)];
-  }
+for(let i=0;i<8;i++) {
 
-  return result;
+result +=
+chars[Math.floor(Math.random()*chars.length)];
+
+}
+
+return result;
 }
 
 document.getElementById("code").textContent =
-  randomCode();
+randomCode();
 
 </script>
 
