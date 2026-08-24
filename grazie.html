@@ -278,7 +278,32 @@ button:hover {
     <div class="code">
       CODICE DELLO SPRECO · <span id="code"></span>
     </div>
+<div class="collection" id="collection" style="display:none;">
 
+  <div style="margin-top:30px; padding:25px 15px; border-radius:22px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);">
+
+    <div style="font-size:13px; letter-spacing:2px; font-weight:bold; color:#aaa;">
+      🏆 LA TUA COLLEZIONE
+    </div>
+
+    <div id="collectionCount"
+         style="font-size:28px; font-weight:bold; margin-top:8px;">
+      0 / 10
+    </div>
+
+    <div style="height:7px; background:rgba(255,255,255,.1); border-radius:20px; margin:15px 0; overflow:hidden;">
+      <div id="collectionBar"
+           style="height:100%; width:0%; background:white; border-radius:20px; transition:.5s;">
+      </div>
+    </div>
+
+    <div id="collectionGrid"
+         style="display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:20px;">
+    </div>
+
+  </div>
+
+</div>
   </div>
 
   <div class="footer">
@@ -1165,7 +1190,172 @@ function randomCode() {
 
 document.getElementById("code").textContent =
   randomCode();
+/* ==============================
+   COLLEZIONE PERSONAGGI
+============================== */
 
+const characters = [
+  "001.png",
+  "002.png",
+  "003.png",
+  "004.png",
+  "005.png",
+  "006.png",
+  "007.png",
+  "008.png",
+  "009.png",
+  "010.png"
+];
+
+const CHARACTER_KEY = "project1_characters";
+
+function getCharacters() {
+
+  try {
+    return JSON.parse(
+      localStorage.getItem(CHARACTER_KEY)
+    ) || [];
+
+  } catch(e) {
+
+    return [];
+
+  }
+
+}
+
+function saveCharacters(list) {
+
+  localStorage.setItem(
+    CHARACTER_KEY,
+    JSON.stringify(list)
+  );
+
+}
+
+function chooseCharacter() {
+
+  let collected = getCharacters();
+
+  // Se abbiamo tutti i personaggi,
+  // ricominciamo il ciclo
+  if (collected.length >= characters.length) {
+
+    collected = [];
+    saveCharacters(collected);
+
+  }
+
+  const available = characters
+    .map((image, index) => index)
+    .filter(index => !collected.includes(index));
+
+  const randomIndex =
+    available[
+      Math.floor(
+        Math.random() * available.length
+      )
+    ];
+
+  collected.push(randomIndex);
+
+  saveCharacters(collected);
+
+  return randomIndex;
+
+}
+
+function updateCollection() {
+
+  const collected = getCharacters();
+
+  const count =
+    document.getElementById("collectionCount");
+
+  const bar =
+    document.getElementById("collectionBar");
+
+  const grid =
+    document.getElementById("collectionGrid");
+
+  if (!count || !bar || !grid) return;
+
+  count.textContent =
+    collected.length + " / " + characters.length;
+
+  bar.style.width =
+    (collected.length / characters.length * 100) + "%";
+
+  grid.innerHTML = "";
+
+  characters.forEach((image, index) => {
+
+    const box =
+      document.createElement("div");
+
+    box.style.aspectRatio = "1";
+    box.style.borderRadius = "12px";
+    box.style.overflow = "hidden";
+    box.style.background =
+      "rgba(255,255,255,.08)";
+    box.style.border =
+      "1px solid rgba(255,255,255,.1)";
+
+    if (collected.includes(index)) {
+
+      const img =
+        document.createElement("img");
+
+      img.src = image;
+
+      img.style.width = "100%";
+      img.style.height = "100%";
+      img.style.objectFit = "cover";
+
+      box.appendChild(img);
+
+    } else {
+
+      box.innerHTML =
+        '<div style="height:100%;display:flex;align-items:center;justify-content:center;font-size:20px;color:#555;">🔒</div>';
+
+    }
+
+    grid.appendChild(box);
+
+  });
+
+}
+
+
+/* Personaggio assegnato a questa visita */
+
+let selectedCharacter =
+  chooseCharacter();
+
+
+/* Mostra il personaggio quando
+   viene rivelata la sorpresa */
+
+const originalReveal =
+  window.reveal;
+
+window.reveal = function() {
+
+  originalReveal();
+
+  const collection =
+    document.getElementById("collection");
+
+  if (collection) {
+
+    collection.style.display = "block";
+
+  }
+
+  updateCollection();
+
+};
 </script>
 
 </body>
