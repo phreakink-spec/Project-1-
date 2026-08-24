@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Project €1</title>
 
 <style>
-
 * {
   box-sizing: border-box;
 }
@@ -16,11 +14,11 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
-  background:
-    radial-gradient(circle at top, #303030 0%, #111 48%, #050505 100%);
+  background: radial-gradient(circle at top, #303030 0%, #111 48%, #050505 100%);
   color: white;
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 24px;
 }
 
@@ -28,7 +26,6 @@ body {
   width: 100%;
   max-width: 620px;
   text-align: center;
-  padding: 20px 0 40px;
 }
 
 .logo {
@@ -174,66 +171,60 @@ button:hover {
   color: #555;
 }
 
-
-/* =========================
-   PERSONAGGIO OTTENUTO
-========================= */
-
-.characterBox {
-  display: none;
+.code {
   margin-top: 30px;
-  padding: 22px;
-  border-radius: 24px;
-  background: rgba(255,255,255,.07);
-  border: 1px solid rgba(255,255,255,.12);
-  animation: appear .5s ease;
+  color: #555;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.character {
+  display: none;
+  margin-top: 25px;
+  padding: 22px 15px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
 }
 
 .characterLabel {
-  font-size: 12px;
-  letter-spacing: 3px;
-  color: #aaa;
+  font-size: 13px;
+  letter-spacing: 2px;
   font-weight: bold;
+  color: #aaa;
   margin-bottom: 15px;
 }
 
 .characterImage {
   width: 100%;
-  max-width: 330px;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 18px;
+  max-width: 300px;
   display: block;
   margin: auto;
+  border-radius: 18px;
   cursor: pointer;
-  transition: .25s;
-  box-shadow: 0 15px 40px rgba(0,0,0,.4);
-}
-
-.characterImage:hover {
-  transform: scale(1.02);
 }
 
 .characterNumber {
-  margin-top: 15px;
-  font-size: 17px;
-  font-weight: bold;
+  margin-top: 12px;
+  font-size: 13px;
   letter-spacing: 2px;
+  color: #aaa;
+  font-weight: bold;
 }
 
-
-/* =========================
-   COLLEZIONE
-========================= */
+.characterHint {
+  margin-top: 8px;
+  color: #777;
+  font-size: 13px;
+}
 
 .collection {
   display: none;
-  margin-top: 30px;
+  margin-top: 25px;
   padding: 25px 15px;
-  border-radius: 24px;
+  border-radius: 22px;
   background: rgba(255,255,255,.05);
   border: 1px solid rgba(255,255,255,.1);
-  animation: appear .5s ease;
 }
 
 .collectionTitle {
@@ -249,7 +240,7 @@ button:hover {
   margin-top: 8px;
 }
 
-.progressBackground {
+.progress {
   height: 7px;
   background: rgba(255,255,255,.1);
   border-radius: 20px;
@@ -297,63 +288,32 @@ button:hover {
   color: #555;
 }
 
-
-/* =========================
-   MODALE IMMAGINE GRANDE
-========================= */
-
-.imageModal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  inset: 0;
-  background: rgba(0,0,0,.9);
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.imageModal img {
-  max-width: 95vw;
-  max-height: 90vh;
-  object-fit: contain;
-  border-radius: 15px;
-  box-shadow: 0 20px 80px rgba(0,0,0,.8);
-}
-
-.closeModal {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 45px;
-  height: 45px;
-  padding: 0;
-  border-radius: 50%;
-  background: rgba(255,255,255,.15);
-  color: white;
-  font-size: 25px;
-}
-
-
-/* =========================
-   CODICE / FOOTER
-========================= */
-
-.code {
-  margin-top: 30px;
-  color: #555;
-  font-size: 11px;
-  letter-spacing: 2px;
-}
-
 .footer {
   margin-top: 22px;
   color: #555;
   font-size: 11px;
 }
 
-@keyframes appear {
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 9999;
+  cursor: pointer;
+}
 
+.lightbox img {
+  max-width: 95vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 18px;
+}
+
+@keyframes appear {
   from {
     opacity: 0;
     transform: translateY(8px);
@@ -363,12 +323,19 @@ button:hover {
     opacity: 1;
     transform: translateY(0);
   }
-
 }
 
+@media (max-width: 400px) {
+  .collectionGrid {
+    gap: 6px;
+  }
+
+  .card {
+    padding: 35px 18px;
+  }
+}
 </style>
 </head>
-
 
 <body>
 
@@ -378,7 +345,6 @@ button:hover {
     PROJECT €1
   </div>
 
-
   <div class="card">
 
     <h1>CE L'HAI FATTA.</h1>
@@ -387,34 +353,30 @@ button:hover {
       Hai fatto uno spreco inutile.
     </p>
 
-
     <button
       class="reveal"
       id="revealButton"
-      onclick="reveal()">
+      onclick="reveal()"
+    >
       🎁 RIVELA LA SORPRESA
     </button>
 
-
     <div
       class="rewardTitle"
-      id="rewardTitle">
-
+      id="rewardTitle"
+    >
       ECCO IL TUO PREMIO.
-
     </div>
-
-
-    <!-- SORPRESA -->
 
     <div
       class="surprise"
-      id="surprise">
+      id="surprise"
+    >
 
       <div
         class="surpriseEmoji"
-        id="emoji">
-      </div>
+        id="emoji"
+      ></div>
 
       <h2 id="title"></h2>
 
@@ -422,40 +384,10 @@ button:hover {
 
     </div>
 
-
-    <!-- PERSONAGGIO -->
-
-    <div
-      class="characterBox"
-      id="characterBox">
-
-      <div class="characterLabel">
-        🎴 PERSONAGGIO COLLEZIONABILE
-      </div>
-
-      <img
-        id="characterImage"
-        class="characterImage"
-        src=""
-        alt="Personaggio">
-
-      <div
-        id="characterNumber"
-        class="characterNumber">
-      </div>
-
-      <p style="color:#aaa; font-size:13px;">
-        Tocca l'immagine per vederla grande.
-      </p>
-
-    </div>
-
-
-    <!-- AZIONI -->
-
     <div
       class="actions"
-      id="actions">
+      id="actions"
+    >
 
       <button onclick="regret()">
         😂 MI SONO PENTITO
@@ -471,12 +403,10 @@ button:hover {
 
     </div>
 
-
-    <!-- PENTIMENTO -->
-
     <div
       class="message"
-      id="message">
+      id="message"
+    >
 
       <div class="messageEmoji">
         😭
@@ -494,17 +424,15 @@ button:hover {
 
     </div>
 
-
-    <!-- CONDIVISIONE -->
-
     <div
       class="shareCard"
-      id="shareCard">
+      id="shareCard"
+    >
 
       <div
         class="big"
-        id="shareEmoji">
-      </div>
+        id="shareEmoji"
+      ></div>
 
       <h2 id="shareTitle"></h2>
 
@@ -517,12 +445,42 @@ button:hover {
 
     </div>
 
+    <div class="code">
+      CODICE DELLO SPRECO ·
+      <span id="code"></span>
+    </div>
 
-    <!-- COLLEZIONE -->
+    <div
+      class="character"
+      id="character"
+    >
+
+      <div class="characterLabel">
+        🎁 HAI TROVATO UN PERSONAGGIO
+      </div>
+
+      <img
+        id="characterImage"
+        class="characterImage"
+        src=""
+        alt="Personaggio collezionabile"
+      >
+
+      <div
+        class="characterNumber"
+        id="characterNumber"
+      ></div>
+
+      <div class="characterHint">
+        Tocca l'immagine per vederla grande.
+      </div>
+
+    </div>
 
     <div
       class="collection"
-      id="collection">
+      id="collection"
+    >
 
       <div class="collectionTitle">
         🏆 LA TUA COLLEZIONE
@@ -530,34 +488,26 @@ button:hover {
 
       <div
         class="collectionCount"
-        id="collectionCount">
+        id="collectionCount"
+      >
         0 / 10
       </div>
 
-      <div class="progressBackground">
-
+      <div class="progress">
         <div
           class="progressBar"
-          id="collectionBar">
-        </div>
-
+          id="collectionBar"
+        ></div>
       </div>
 
       <div
         class="collectionGrid"
-        id="collectionGrid">
-      </div>
+        id="collectionGrid"
+      ></div>
 
-    </div>
-
-
-    <div class="code">
-      CODICE DELLO SPRECO ·
-      <span id="code"></span>
     </div>
 
   </div>
-
 
   <div class="footer">
     Un progetto completamente inutile.
@@ -566,64 +516,1167 @@ button:hover {
 </div>
 
 
-<!-- =========================
-     MODALE
-========================= -->
-
-<div
-  class="imageModal"
-  id="imageModal"
-  onclick="closeImage()">
-
-  <button
-    class="closeModal"
-    onclick="closeImage()">
-    ×
-  </button>
-
-  <img
-    id="modalImage"
-    src=""
-    alt="Personaggio grande"
-    onclick="event.stopPropagation()">
-
-</div>
-
-
 <script>
 
-
-/* ==============================
+/* =====================================
    SORPRESE
-============================== */
+===================================== */
 
 const surprises = [
 
-  {
-    emoji:"🏆",
-    title:"CERTIFICATO UFFICIALE DI SPRECO",
-    text:"Con la presente si certifica che hai speso 1 € in qualcosa di completamente inutile. Puoi esserne orgoglioso."
-  },
+{
+emoji:"🏆",
+title:"CERTIFICATO UFFICIALE DI SPRECO",
+text:"Con la presente si certifica che hai speso 1 € in qualcosa di completamente inutile. Puoi esserne orgoglioso."
+},
 
-  {
-    emoji:"🧠",
-    title:"PERLA DI SAGGEZZA",
-    text:"Se perdi qualcosa sotto il divano, prima o poi dovrai spostare il divano."
-  },
+{
+emoji:"🧠",
+title:"PERLA DI SAGGEZZA",
+text:"Se perdi qualcosa sotto il divano, prima o poi dovrai spostare il divano."
+},
 
-  {
-    emoji:"🪨",
-    title:"HAI ADOTTATO UN SASSO",
-    text:"Il tuo sasso virtuale si chiama Gino. Non parla molto, ma apprezza il tuo contributo."
-  },
+{
+emoji:"🪨",
+title:"HAI ADOTTATO UN SASSO",
+text:"Il tuo sasso virtuale si chiama Gino. Non parla molto, ma apprezza il tuo contributo."
+},
 
-  {
-    emoji:"👑",
-    title:"NUOVO TITOLO NOBILIARE",
-    text:"Da questo momento puoi considerarti Sua Altezza, Custode Supremo dell'Euro Sprecato."
-  },
+{
+emoji:"👑",
+title:"NUOVO TITOLO NOBILIARE",
+text:"Da questo momento puoi considerarti Sua Altezza, Custode Supremo dell'Euro Sprecato."
+},
 
-  {
-    emoji:"🧠",
-    title:"TEST PSICOLOGICO",
-    text:"Hai pagato 1 € senza sapere cosa avresti ricevuto. Questo dimostra che sei una persona pericolosamente
+{
+emoji:"🧠",
+title:"TEST PSICOLOGICO",
+text:"Hai pagato 1 € senza sapere cosa avresti ricevuto. Questo dimostra che sei una persona pericolosamente curiosa. Il test è scientificamente inutile."
+},
+
+{
+emoji:"🔮",
+title:"PREDIZIONE DEL FUTURO",
+text:"Presto guarderai il tuo conto bancario e penserai: «Ah sì... quello è stato quell'euro.»"
+},
+
+{
+emoji:"🎖️",
+title:"MEDAGLIA AL CORAGGIO",
+text:"Per aver avuto il coraggio di cliccare «Paga 1 €» senza sapere assolutamente cosa sarebbe successo."
+},
+
+{
+emoji:"🕵️",
+title:"RAPPORTO RISERVATO",
+text:"Dopo un'attenta analisi, possiamo confermare che hai effettivamente speso 1 €. Le autorità sono state informate."
+},
+
+{
+emoji:"📊",
+title:"ANALISI SCIENTIFICA",
+text:"Il tuo euro ha aumentato l'inutilità globale dello 0,0000003%. Un risultato scientificamente impressionante."
+},
+
+{
+emoji:"🎲",
+title:"SORPRESA CASUALE",
+text:"Hai trovato la sorpresa più rara: non c'è niente da vedere qui. Ma ormai hai pagato."
+},
+
+{
+emoji:"🥇",
+title:"PRIMO POSTO",
+text:"Congratulazioni. Sei arrivato primo in una gara a cui non partecipava nessun altro."
+},
+
+{
+emoji:"📜",
+title:"DOCUMENTO IMPORTANTISSIMO",
+text:"Questo documento certifica ufficialmente che questo documento non serve assolutamente a niente."
+},
+
+{
+emoji:"🤔",
+title:"DOMANDA ESISTENZIALE",
+text:"Se spendi 1 € per scoprire cosa hai comprato, hai davvero comprato qualcosa?"
+},
+
+{
+emoji:"🐌",
+title:"PREMIO LUMACA",
+text:"Hai vinto una lumaca immaginaria. È molto lenta, quindi probabilmente non arriverà mai."
+},
+
+{
+emoji:"💎",
+title:"DIAMANTE VIRTUALE",
+text:"Possiedi ufficialmente un diamante. Purtroppo esiste solo nella tua immaginazione."
+},
+
+{
+emoji:"📞",
+title:"CHIAMATA PERSA",
+text:"Qualcuno ha provato a chiamarti per dirti che potevi risparmiare questo euro. Hai perso la chiamata."
+},
+
+{
+emoji:"🧙",
+title:"MAESTRO DELLO SPRECO",
+text:"Hai raggiunto un livello di spreco che pochi esseri umani hanno avuto il coraggio di raggiungere."
+},
+
+{
+emoji:"🚨",
+title:"ALLARME",
+text:"È stato rilevato un movimento sospetto sul tuo conto bancario. Sì, era proprio quell'euro."
+},
+
+{
+emoji:"🎩",
+title:"MAGIA",
+text:"Il tuo euro è sparito magicamente. Stranamente, è esattamente quello che doveva succedere."
+},
+
+{
+emoji:"🍕",
+title:"PIZZA IMMAGINARIA",
+text:"Hai appena comprato lo 0,0001% di una pizza immaginaria. La mozzarella è ottima."
+},
+
+{
+emoji:"🧃",
+title:"BEVANDA INVISIBILE",
+text:"Hai vinto una bevanda invisibile. Non rovesciarla."
+},
+
+{
+emoji:"🦆",
+title:"ANATRA UFFICIALE",
+text:"Da questo momento un'anatra immaginaria è responsabile delle tue decisioni finanziarie."
+},
+
+{
+emoji:"📡",
+title:"SEGNALE RICEVUTO",
+text:"Il tuo euro è stato ricevuto. Non abbiamo idea di cosa farne, ma grazie."
+},
+
+{
+emoji:"🛋️",
+title:"DIVANO VIRTUALE",
+text:"Hai acquistato un posto sul divano. Purtroppo qualcun altro ci si è già seduto."
+},
+
+{
+emoji:"🎓",
+title:"LAUREA",
+text:"Hai conseguito una laurea in Economia dello Spreco. Complimenti, dottore."
+},
+
+{
+emoji:"🐟",
+title:"PESCE INVISIBILE",
+text:"Hai adottato un pesce invisibile. Non devi nutrirlo perché non possiamo vederlo."
+},
+
+{
+emoji:"🌚",
+title:"LATO OSCURO",
+text:"Hai speso un euro. Nessuno sa perché. Nemmeno tu."
+},
+
+{
+emoji:"🧯",
+title:"ESTINTORE",
+text:"Hai vinto un estintore virtuale. Potrebbe essere utile se il tuo telefono prende fuoco."
+},
+
+{
+emoji:"🧦",
+title:"CALZINO SPERDUTO",
+text:"Abbiamo ritrovato un calzino. Non sappiamo se sia tuo. Comunque ora è tuo."
+},
+
+{
+emoji:"🎯",
+title:"CENTRO PERFETTO",
+text:"Hai centrato perfettamente l'obiettivo. Peccato che l'obiettivo fosse spendere un euro inutilmente."
+},
+
+{
+emoji:"🪪",
+title:"IDENTITÀ SEGRETA",
+text:"La tua nuova identità è: Persona Che Ha Speso Un Euro Per Vedere Una Sorpresa."
+},
+
+{
+emoji:"🌈",
+title:"ARCOBALENO",
+text:"Hai vinto un arcobaleno. Non puoi portarlo a casa perché pesa troppo."
+},
+
+{
+emoji:"🧦",
+title:"PREMIO CALZINO",
+text:"Congratulazioni: possiedi un calzino virtuale. L'altro è sparito."
+},
+
+{
+emoji:"🔬",
+title:"ESPERIMENTO",
+text:"L'esperimento è riuscito. Hai davvero pagato 1 € per vedere cosa sarebbe successo."
+},
+
+{
+emoji:"🐢",
+title:"TARTARUGA",
+text:"Hai ottenuto una tartaruga virtuale. Il suo unico talento è arrivare tardi."
+},
+
+{
+emoji:"💡",
+title:"IDEA GENIALE",
+text:"Abbiamo avuto un'idea geniale: non spendere altri euro. Purtroppo è arrivata troppo tardi."
+},
+
+{
+emoji:"🧩",
+title:"PEZZO MANCANTE",
+text:"Hai trovato il pezzo mancante del puzzle. Non abbiamo il puzzle, ma almeno hai il pezzo."
+},
+
+{
+emoji:"🧪",
+title:"FORMULA SEGRETA",
+text:"La formula segreta per risparmiare è stata scoperta. Non spendere soldi inutilmente. Troppo semplice."
+},
+
+{
+emoji:"🗿",
+title:"STATUA",
+text:"Una statua immaginaria è stata eretta in tuo onore. Nessuno sa dove si trovi."
+},
+
+{
+emoji:"📦",
+title:"PACCO VUOTO",
+text:"Il tuo pacco è arrivato. Contiene aria. L'aria era gratuita."
+},
+
+{
+emoji:"🚀",
+title:"MISSIONE SPAZIALE",
+text:"Il tuo euro è stato lanciato nello spazio. Non aspettarti che torni."
+},
+
+{
+emoji:"🦄",
+title:"UNICORNO",
+text:"Hai ottenuto un unicorno virtuale. Mangia arcobaleni e giudica le tue scelte."
+},
+
+{
+emoji:"🏖️",
+title:"VACANZA",
+text:"Hai prenotato una vacanza su un'isola immaginaria. Il volo è sempre in ritardo."
+},
+
+{
+emoji:"🧊",
+title:"GHIACCIO",
+text:"Hai ricevuto un cubetto di ghiaccio virtuale. Si è già sciolto."
+},
+
+{
+emoji:"🎬",
+title:"FINE DEL FILM",
+text:"Grazie per aver guardato. Non c'era nessun film."
+},
+
+{
+emoji:"🛸",
+title:"ALIENI",
+text:"Gli alieni hanno analizzato il tuo pagamento. Anche loro non capiscono perché l'hai fatto."
+},
+
+{
+emoji:"📚",
+title:"ENCICLOPEDIA",
+text:"Hai imparato una cosa fondamentale: puoi spendere un euro anche per scoprire che non serviva."
+},
+
+{
+emoji:"🧹",
+title:"SPAZZATURA",
+text:"Hai appena prodotto una minuscola quantità di spazzatura digitale. Complimenti."
+},
+
+{
+emoji:"🎈",
+title:"PALLONCINO",
+text:"Hai vinto un palloncino. È volato via prima che potessi prenderlo."
+},
+
+{
+emoji:"🔑",
+title:"CHIAVE",
+text:"Hai trovato una chiave. Non apre niente. Ma è una bella chiave."
+},
+
+{
+emoji:"🐔",
+title:"GALLINA",
+text:"Una gallina virtuale ha approvato la tua decisione. Non chiedere perché."
+},
+
+{
+emoji:"🌵",
+title:"CACTUS",
+text:"Hai adottato un cactus virtuale. Non serve annaffiarlo e non giudica le tue scelte."
+},
+
+{
+emoji:"🪐",
+title:"PIANETA",
+text:"Hai acquistato un pianeta. Purtroppo è già stato occupato da qualcuno."
+},
+
+{
+emoji:"🧛",
+title:"VAMPIRO",
+text:"Un vampiro virtuale ha promesso di proteggere il tuo euro. Non fidarti."
+},
+
+{
+emoji:"🧸",
+title:"ORSACCHIOTTO",
+text:"Hai ricevuto un orsacchiotto virtuale. Ti giudica in silenzio."
+},
+
+{
+emoji:"🧭",
+title:"BUSSOLA",
+text:"Hai trovato una bussola. Indica sempre la direzione dello spreco."
+},
+
+{
+emoji:"🏰",
+title:"CASTELLO",
+text:"Possiedi un castello virtuale. L'affitto è sorprendentemente alto."
+},
+
+{
+emoji:"🦖",
+title:"DINOSAURO",
+text:"Un dinosauro virtuale è apparso nel tuo account. Non sa perché."
+},
+
+{
+emoji:"🧻",
+title:"PREMIO CARTA IGIENICA",
+text:"Hai vinto un rotolo virtuale. Per fortuna non serve veramente."
+},
+
+{
+emoji:"☕",
+title:"CAFFÈ",
+text:"Questo messaggio vale esattamente quanto un caffè immaginario: niente, ma fa piacere."
+},
+
+{
+emoji:"🎸",
+title:"ROCKSTAR",
+text:"Per 24 ore sei ufficialmente una rockstar. Cerca di non montarti la testa."
+},
+
+{
+emoji:"🕶️",
+title:"MODALITÀ SEGRETA",
+text:"Hai sbloccato la modalità segreta. Non cambia assolutamente niente."
+},
+
+{
+emoji:"🌪️",
+title:"URAGANO",
+text:"Un piccolo uragano ha spazzato via il tuo euro. Era già partito comunque."
+},
+
+{
+emoji:"🐙",
+title:"POLPO",
+text:"Un polpo virtuale ti ha assegnato otto punti. Nessuno sa in quale classifica."
+},
+
+{
+emoji:"🦩",
+title:"FENICOTTERO",
+text:"Un fenicottero ha osservato il tuo acquisto e ha deciso di non commentare."
+},
+
+{
+emoji:"🛎️",
+title:"SERVIZIO IN CAMERA",
+text:"Il servizio in camera ha consegnato una cosa che non avevi ordinato: questa pagina."
+},
+
+{
+emoji:"🎮",
+title:"MISSIONE COMPLETATA",
+text:"Missione completata: spendere un euro. Ricompensa: una sorpresa inutile."
+},
+
+{
+emoji:"🧙‍♂️",
+title:"PROFEZIA",
+text:"Un antico mago aveva previsto questo momento. Anche lui non aveva niente di meglio da fare."
+},
+
+{
+emoji:"🍀",
+title:"FORTUNA",
+text:"La fortuna è dalla tua parte. Peccato che tu l'abbia usata per spendere un euro."
+},
+
+{
+emoji:"🚲",
+title:"BICICLETTA",
+text:"Hai vinto una bicicletta virtuale. È bellissima. Non puoi pedalarla."
+},
+
+{
+emoji:"🦈",
+title:"SQUALO",
+text:"Uno squalo virtuale ha comprato un biglietto per vedere questa pagina. Ora siete pari."
+},
+
+{
+emoji:"🧸",
+title:"AMICO IMMAGINARIO",
+text:"Hai appena ricevuto un nuovo amico immaginario. Non risponde ai messaggi."
+},
+
+{
+emoji:"🪄",
+title:"BACCHETTA MAGICA",
+text:"Hai trovato una bacchetta magica. Purtroppo è scarica."
+},
+
+{
+emoji:"🎁",
+title:"REGALO",
+text:"Questo è un regalo. Te lo sei praticamente comprato da solo."
+},
+
+{
+emoji:"🧮",
+title:"CALCOLO PERFETTO",
+text:"1 € meno 1 € fa 0 €. La matematica conferma il tuo spreco."
+},
+
+{
+emoji:"🐸",
+title:"RANA",
+text:"Una rana ha approvato il tuo acquisto con un sonoro «Cra». È tutto ciò che sappiamo."
+},
+
+{
+emoji:"🌙",
+title:"LUNA",
+text:"Hai comprato un piccolo pezzo di luna. È troppo lontano per essere consegnato."
+},
+
+{
+emoji:"🪙",
+title:"MONETA",
+text:"Hai speso una moneta per vedere una moneta. Questa è quasi arte."
+},
+
+{
+emoji:"🎤",
+title:"ANNUNCIO PUBBLICO",
+text:"Attenzione: una persona ha appena speso un euro per una sorpresa. Quella persona sei tu."
+},
+
+{
+emoji:"📸",
+title:"FOTO UFFICIALE",
+text:"Questo è il momento perfetto per fare uno screenshot e fingere che tu abbia vinto qualcosa."
+},
+
+{
+emoji:"🫠",
+title:"MOMENTO DI CONSAPEVOLEZZA",
+text:"In questo preciso momento hai realizzato che potevi tenerti quell'euro."
+},
+
+{
+emoji:"🛸",
+title:"TELETRASPORTO",
+text:"Il tuo euro è stato teletrasportato. Destinazione sconosciuta."
+},
+
+{
+emoji:"🧁",
+title:"DOLCETTO",
+text:"Hai ricevuto un cupcake virtuale. Non contiene calorie, ma nemmeno cioccolato."
+},
+
+{
+emoji:"🐈",
+title:"GATTO",
+text:"Un gatto virtuale ha visto il tuo pagamento. Ti ha guardato. Poi ha ignorato tutto."
+},
+
+{
+emoji:"🦥",
+title:"BRADIPO",
+text:"Hai sbloccato un bradipo. Farà qualcosa prima o poi. Probabilmente."
+},
+
+{
+emoji:"🎰",
+title:"JACKPOT",
+text:"JACKPOT! Hai vinto... la soddisfazione di aver speso un euro."
+},
+
+{
+emoji:"🧿",
+title:"AMULETO",
+text:"Questo amuleto proteggerà il tuo conto bancario. Peccato che l'euro sia già andato."
+},
+
+{
+emoji:"🧃",
+title:"SUCCO",
+text:"Hai vinto un succo di frutta virtuale. Gusto: spreco tropicale."
+},
+
+{
+emoji:"🧑‍🚀",
+title:"ASTRONAUTA",
+text:"Sei stato promosso astronauta. La prima missione è capire dove è finito il tuo euro."
+},
+
+{
+emoji:"🪑",
+title:"SEDIA",
+text:"Hai ottenuto una sedia virtuale. È molto comoda, secondo nessuno."
+},
+
+{
+emoji:"🔔",
+title:"CAMPANELLO",
+text:"Ding dong. Hai appena speso un euro."
+},
+
+{
+emoji:"🌳",
+title:"ALBERO",
+text:"Hai piantato un albero virtuale. Produce ossigeno immaginario."
+},
+
+{
+emoji:"🦆",
+title:"COMITATO DELLE ANATRE",
+text:"Il comitato delle anatre si è riunito e ha approvato il tuo spreco con voto unanime."
+},
+
+{
+emoji:"📬",
+title:"LETTERA",
+text:"Hai ricevuto una lettera. Dice semplicemente: «Grazie per l'euro.»"
+},
+
+{
+emoji:"🎵",
+title:"CANZONE",
+text:"Questa è la colonna sonora del tuo euro che se ne va. La senti? No? Perfetto."
+},
+
+{
+emoji:"🧙‍♀️",
+title:"STREGA",
+text:"Una strega ha controllato il tuo futuro. Dice che spenderai ancora un euro."
+},
+
+{
+emoji:"🥳",
+title:"FESTA",
+text:"Abbiamo organizzato una festa in tuo onore. Gli invitati sono tre pixel e un sasso."
+},
+
+{
+emoji:"🕳️",
+title:"BUCO",
+text:"Hai trovato un buco. Non porta da nessuna parte. Come questa esperienza."
+},
+
+{
+emoji:"📈",
+title:"INVESTIMENTO",
+text:"Il tuo investimento ha prodotto un rendimento straordinario: una sorpresa inutile."
+},
+
+{
+emoji:"🪨",
+title:"GINO È TORNATO",
+text:"Gino il sasso voleva salutarti. Dice che sei stato un ottimo proprietario per circa tre secondi."
+}
+
+];
+
+
+/* =====================================
+   PERSONAGGI
+===================================== */
+
+const characters = [
+  "001.png",
+  "002.png",
+  "003.png",
+  "004.png",
+  "005.png",
+  "006.png",
+  "007.png",
+  "008.png",
+  "009.png",
+  "010.png"
+];
+
+
+/* =====================================
+   STORAGE
+===================================== */
+
+const SURPRISE_KEY =
+  "project1_seen_surprises";
+
+const CHARACTER_KEY =
+  "project1_collected_characters";
+
+
+function readStorage(key) {
+
+  try {
+
+    const data =
+      localStorage.getItem(key);
+
+    if (!data) {
+      return [];
+    }
+
+    const parsed =
+      JSON.parse(data);
+
+    return Array.isArray(parsed)
+      ? parsed
+      : [];
+
+  } catch (error) {
+
+    return [];
+
+  }
+
+}
+
+
+function writeStorage(key, data) {
+
+  try {
+
+    localStorage.setItem(
+      key,
+      JSON.stringify(data)
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Errore salvataggio:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================
+   SORPRESA
+===================================== */
+
+function chooseSurprise() {
+
+  let seen =
+    readStorage(SURPRISE_KEY);
+
+  if (seen.length >= surprises.length) {
+
+    seen = [];
+
+    writeStorage(
+      SURPRISE_KEY,
+      seen
+    );
+
+  }
+
+  const available =
+    surprises
+      .map((item, index) => index)
+      .filter(index => !seen.includes(index));
+
+  const index =
+    available[
+      Math.floor(
+        Math.random() * available.length
+      )
+    ];
+
+  seen.push(index);
+
+  writeStorage(
+    SURPRISE_KEY,
+    seen
+  );
+
+  return surprises[index];
+}
+
+
+let selected =
+  chooseSurprise();
+
+
+/* =====================================
+   PERSONAGGIO
+===================================== */
+
+function chooseCharacter() {
+
+  let collected =
+    readStorage(CHARACTER_KEY);
+
+  if (
+    collected.length >=
+    characters.length
+  ) {
+
+    collected = [];
+
+    writeStorage(
+      CHARACTER_KEY,
+      collected
+    );
+
+  }
+
+  const available =
+    characters
+      .map((image, index) => index)
+      .filter(
+        index =>
+          !collected.includes(index)
+      );
+
+  const index =
+    available[
+      Math.floor(
+        Math.random() * available.length
+      )
+    ];
+
+  collected.push(index);
+
+  writeStorage(
+    CHARACTER_KEY,
+    collected
+  );
+
+  return index;
+}
+
+
+/* =====================================
+   CODICE DELLO SPRECO
+===================================== */
+
+function randomCode() {
+
+  const chars =
+    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+  let result = "";
+
+  for (
+    let i = 0;
+    i < 8;
+    i++
+  ) {
+
+    result +=
+      chars[
+        Math.floor(
+          Math.random() *
+          chars.length
+        )
+      ];
+
+  }
+
+  return result;
+}
+
+
+document.getElementById(
+  "code"
+).textContent =
+  randomCode();
+
+
+/* =====================================
+   COLLEZIONE
+===================================== */
+
+function updateCollection() {
+
+  const collected =
+    readStorage(CHARACTER_KEY);
+
+  const count =
+    document.getElementById(
+      "collectionCount"
+    );
+
+  const bar =
+    document.getElementById(
+      "collectionBar"
+    );
+
+  const grid =
+    document.getElementById(
+      "collectionGrid"
+    );
+
+  if (
+    !count ||
+    !bar ||
+    !grid
+  ) {
+    return;
+  }
+
+  count.textContent =
+    collected.length +
+    " / " +
+    characters.length;
+
+  bar.style.width =
+    (
+      collected.length /
+      characters.length *
+      100
+    ) + "%";
+
+  grid.innerHTML = "";
+
+  characters.forEach(
+    (image, index) => {
+
+      const box =
+        document.createElement(
+          "div"
+        );
+
+      box.className =
+        "collectionItem";
+
+      if (
+        collected.includes(index)
+      ) {
+
+        const img =
+          document.createElement(
+            "img"
+          );
+
+        img.src = image;
+
+        img.alt =
+          "Personaggio #" +
+          String(index + 1)
+            .padStart(3, "0");
+
+        img.onclick =
+          function() {
+            openImage(image);
+          };
+
+        box.appendChild(img);
+
+      } else {
+
+        const locked =
+          document.createElement(
+            "div"
+          );
+
+        locked.className =
+          "locked";
+
+        locked.textContent =
+          "🔒";
+
+        box.appendChild(
+          locked
+        );
+
+      }
+
+      grid.appendChild(
+        box
+      );
+
+    }
+  );
+}
+
+
+/* =====================================
+   LIGHTBOX
+===================================== */
+
+function openImage(image) {
+
+  const lightbox =
+    document.createElement(
+      "div"
+    );
+
+  lightbox.className =
+    "lightbox";
+
+  const img =
+    document.createElement(
+      "img"
+    );
+
+  img.src = image;
+
+  lightbox.appendChild(
+    img
+  );
+
+  lightbox.onclick =
+    function() {
+      lightbox.remove();
+    };
+
+  document.body.appendChild(
+    lightbox
+  );
+}
+
+
+/* =====================================
+   RIVELA
+===================================== */
+
+function reveal() {
+
+  const rewardTitle =
+    document.getElementById(
+      "rewardTitle"
+    );
+
+  const emoji =
+    document.getElementById(
+      "emoji"
+    );
+
+  const title =
+    document.getElementById(
+      "title"
+    );
+
+  const text =
+    document.getElementById(
+      "text"
+    );
+
+  const surprise =
+    document.getElementById(
+      "surprise"
+    );
+
+  const actions =
+    document.getElementById(
+      "actions"
+    );
+
+  const button =
+    document.getElementById(
+      "revealButton"
+    );
+
+  rewardTitle.style.display =
+    "block";
+
+  emoji.textContent =
+    selected.emoji;
+
+  title.textContent =
+    selected.title;
+
+  text.textContent =
+    selected.text;
+
+  surprise.style.display =
+    "block";
+
+  actions.style.display =
+    "flex";
+
+  button.style.display =
+    "none";
+
+
+  /* PERSONAGGIO */
+
+  const characterIndex =
+    chooseCharacter();
+
+  const image =
+    characters[characterIndex];
+
+  const character =
+    document.getElementById(
+      "character"
+    );
+
+  const characterImage =
+    document.getElementById(
+      "characterImage"
+    );
+
+  const characterNumber =
+    document.getElementById(
+      "characterNumber"
+    );
+
+  characterImage.src =
+    image;
+
+  characterNumber.textContent =
+    "PERSONAGGIO #" +
+    String(
+      characterIndex + 1
+    ).padStart(3, "0");
+
+  character.style.display =
+    "block";
+
+  characterImage.onclick =
+    function() {
+      openImage(image);
+    };
+
+
+  /* COLLEZIONE */
+
+  const collection =
+    document.getElementById(
+      "collection"
+    );
+
+  collection.style.display =
+    "block";
+
+  updateCollection();
+
+}
+
+
+/* =====================================
+   PENTIMENTO
+===================================== */
+
+function regret() {
+
+  document.getElementById(
+    "message"
+  ).style.display =
+    "block";
+
+}
+
+
+/* =====================================
+   CONDIVIDI
+===================================== */
+
+function share() {
+
+  const shareEmoji =
+    document.getElementById(
+      "shareEmoji"
+    );
+
+  const shareTitle =
+    document.getElementById(
+      "shareTitle"
+    );
+
+  const shareCode =
+    document.getElementById(
+      "shareCode"
+    );
+
+  const shareCard =
+    document.getElementById(
+      "shareCard"
+    );
+
+  shareEmoji.textContent =
+    selected.emoji;
+
+  shareTitle.textContent =
+    selected.title;
+
+  shareCode.textContent =
+    "Codice: " +
+    document.getElementById(
+      "code"
+    ).textContent;
+
+  shareCard.style.display =
+    "block";
+
+}
+
+
+/* =====================================
+   UN ALTRO EURO
+===================================== */
+
+function another() {
+
+  window.location.href =
+    "index.html";
+
+}
+
+
+/* =====================================
+   AVVIO
+===================================== */
+
+updateCollection();
+
+</script>
+
+</body>
+</html>
