@@ -1113,6 +1113,41 @@ function reveal() {
   document.getElementById("revealButton").style.display =
     "none";
 
+
+  /* =========================
+     PERSONAGGIO COLLEZIONABILE
+  ========================= */
+
+  const characterBox =
+    document.getElementById("newCharacter");
+
+  const characterImage =
+    document.getElementById("characterImage");
+
+  const characterNumber =
+    document.getElementById("characterNumber");
+
+
+  if (
+    characterBox &&
+    characterImage &&
+    characterNumber
+  ) {
+
+    characterImage.src =
+      characters[selectedCharacter];
+
+    characterNumber.textContent =
+      "PERSONAGGIO #" +
+      String(selectedCharacter + 1).padStart(3, "0");
+
+    characterBox.style.display =
+      "block";
+
+  }
+
+  updateCollection();
+
 }
 
 
